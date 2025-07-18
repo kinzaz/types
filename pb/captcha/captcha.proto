@@ -1,0 +1,30 @@
+syntax="proto3";
+package captcha;
+
+option go_package = "gitlab.com/revoluterra-dev/common/types/pb/captcha";
+
+service Captcha {
+      rpc Solve (SolveRequest) returns (SolveResponse);
+}
+
+message SolveRequest {
+  string img_url = 1;
+  bool google = 2;
+  string google_key = 3;
+  string google_data_s = 4;
+  string google_page_url = 5;
+  string cookies = 6;
+  string proxy = 7;
+  string proxy_type = 8;
+  bytes img_data = 9;
+  string user_agent = 10;
+}
+
+message SolveResponse {
+    string solved_captcha = 1;
+    string captcha_id = 2;
+    bool google = 3;
+    string google_token = 4;
+    string cookies = 5;
+}
+

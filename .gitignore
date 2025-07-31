@@ -1,0 +1,15 @@
+# IDE
+.idea/
+.vscode/
+
+# Go
+bin/
+*.test
+*.out
+
+# Logs and temp
+*.log
+*.tmp
+
+# buf
+.bufbuild/

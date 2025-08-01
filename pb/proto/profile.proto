@@ -62,9 +62,19 @@ message GetProfilesResponse {
 
 message Empty {}
 
+message GetCityIDByNameRequest {
+  string name = 1;
+}
+
+// Ответ
+message GetCityIDByNameResponse {
+  int32 city_id = 1; 
+}
+
 service ProfileService {
   rpc CreateProfile(CreateProfileRequest) returns (Profile);
   rpc GetProfileByID(GetProfileByIDRequest) returns (Profile);
   rpc GetProfiles(Empty) returns (GetProfilesResponse);
   rpc DeleteProfileByID(GetProfileByIDRequest) returns (Empty);
+  rpc GetCityIDByName(GetCityIDByNameRequest) returns (GetCityIDByNameResponse);
 }

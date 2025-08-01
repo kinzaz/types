@@ -23,6 +23,7 @@ const (
 	ProfileService_GetProfileByID_FullMethodName    = "/profile.ProfileService/GetProfileByID"
 	ProfileService_GetProfiles_FullMethodName       = "/profile.ProfileService/GetProfiles"
 	ProfileService_DeleteProfileByID_FullMethodName = "/profile.ProfileService/DeleteProfileByID"
+	ProfileService_GetCityIDByName_FullMethodName   = "/profile.ProfileService/GetCityIDByName"
 )
 
 // ProfileServiceClient is the client API for ProfileService service.
@@ -33,6 +34,7 @@ type ProfileServiceClient interface {
 	GetProfileByID(ctx context.Context, in *GetProfileByIDRequest, opts ...grpc.CallOption) (*Profile, error)
 	GetProfiles(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*GetProfilesResponse, error)
 	DeleteProfileByID(ctx context.Context, in *GetProfileByIDRequest, opts ...grpc.CallOption) (*Empty, error)
+	GetCityIDByName(ctx context.Context, in *GetCityIDByNameRequest, opts ...grpc.CallOption) (*GetCityIDByNameResponse, error)
 }
 
 type profileServiceClient struct {
@@ -83,6 +85,16 @@ func (c *profileServiceClient) DeleteProfileByID(ctx context.Context, in *GetPro
 	return out, nil
 }
 
+func (c *profileServiceClient) GetCityIDByName(ctx context.Context, in *GetCityIDByNameRequest, opts ...grpc.CallOption) (*GetCityIDByNameResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GetCityIDByNameResponse)
+	err := c.cc.Invoke(ctx, ProfileService_GetCityIDByName_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // ProfileServiceServer is the server API for ProfileService service.
 // All implementations must embed UnimplementedProfileServiceServer
 // for forward compatibility.
@@ -91,6 +103,7 @@ type ProfileServiceServer interface {
 	GetProfileByID(context.Context, *GetProfileByIDRequest) (*Profile, error)
 	GetProfiles(context.Context, *Empty) (*GetProfilesResponse, error)
 	DeleteProfileByID(context.Context, *GetProfileByIDRequest) (*Empty, error)
+	GetCityIDByName(context.Context, *GetCityIDByNameRequest) (*GetCityIDByNameResponse, error)
 	mustEmbedUnimplementedProfileServiceServer()
 }
 
@@ -112,6 +125,9 @@ func (UnimplementedProfileServiceServer) GetProfiles(context.Context, *Empty) (*
 }
 func (UnimplementedProfileServiceServer) DeleteProfileByID(context.Context, *GetProfileByIDRequest) (*Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DeleteProfileByID not implemented")
+}
+func (UnimplementedProfileServiceServer) GetCityIDByName(context.Context, *GetCityIDByNameRequest) (*GetCityIDByNameResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetCityIDByName not implemented")
 }
 func (UnimplementedProfileServiceServer) mustEmbedUnimplementedProfileServiceServer() {}
 func (UnimplementedProfileServiceServer) testEmbeddedByValue()                        {}
@@ -206,6 +222,24 @@ func _ProfileService_DeleteProfileByID_Handler(srv interface{}, ctx context.Cont
 	return interceptor(ctx, in, info, handler)
 }
 
+func _ProfileService_GetCityIDByName_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetCityIDByNameRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ProfileServiceServer).GetCityIDByName(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ProfileService_GetCityIDByName_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ProfileServiceServer).GetCityIDByName(ctx, req.(*GetCityIDByNameRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // ProfileService_ServiceDesc is the grpc.ServiceDesc for ProfileService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -228,6 +262,10 @@ var ProfileService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "DeleteProfileByID",
 			Handler:    _ProfileService_DeleteProfileByID_Handler,
+		},
+		{
+			MethodName: "GetCityIDByName",
+			Handler:    _ProfileService_GetCityIDByName_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

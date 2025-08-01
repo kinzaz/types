@@ -5,8 +5,8 @@ package profile;
 option go_package = "pb/gen/profile;profile";
 
 message Prices {
-  string one_hour = 1;
-  string two_hour = 2;
+  int32 one_hour = 1;
+  int32 two_hour = 2;
   string night = 3;
 }
 

@@ -24,6 +24,8 @@ const (
 	ProfileService_GetProfiles_FullMethodName       = "/profile.ProfileService/GetProfiles"
 	ProfileService_DeleteProfileByID_FullMethodName = "/profile.ProfileService/DeleteProfileByID"
 	ProfileService_GetCityIDByName_FullMethodName   = "/profile.ProfileService/GetCityIDByName"
+	ProfileService_GetNationalities_FullMethodName  = "/profile.ProfileService/GetNationalities"
+	ProfileService_GetHairColors_FullMethodName     = "/profile.ProfileService/GetHairColors"
 )
 
 // ProfileServiceClient is the client API for ProfileService service.
@@ -35,6 +37,8 @@ type ProfileServiceClient interface {
 	GetProfiles(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*GetProfilesResponse, error)
 	DeleteProfileByID(ctx context.Context, in *GetProfileByIDRequest, opts ...grpc.CallOption) (*Empty, error)
 	GetCityIDByName(ctx context.Context, in *GetCityIDByNameRequest, opts ...grpc.CallOption) (*GetCityIDByNameResponse, error)
+	GetNationalities(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*GetNationalitiesResponse, error)
+	GetHairColors(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*GetHairColorsResponse, error)
 }
 
 type profileServiceClient struct {
@@ -95,6 +99,26 @@ func (c *profileServiceClient) GetCityIDByName(ctx context.Context, in *GetCityI
 	return out, nil
 }
 
+func (c *profileServiceClient) GetNationalities(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*GetNationalitiesResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GetNationalitiesResponse)
+	err := c.cc.Invoke(ctx, ProfileService_GetNationalities_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *profileServiceClient) GetHairColors(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*GetHairColorsResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GetHairColorsResponse)
+	err := c.cc.Invoke(ctx, ProfileService_GetHairColors_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // ProfileServiceServer is the server API for ProfileService service.
 // All implementations must embed UnimplementedProfileServiceServer
 // for forward compatibility.
@@ -104,6 +128,8 @@ type ProfileServiceServer interface {
 	GetProfiles(context.Context, *Empty) (*GetProfilesResponse, error)
 	DeleteProfileByID(context.Context, *GetProfileByIDRequest) (*Empty, error)
 	GetCityIDByName(context.Context, *GetCityIDByNameRequest) (*GetCityIDByNameResponse, error)
+	GetNationalities(context.Context, *Empty) (*GetNationalitiesResponse, error)
+	GetHairColors(context.Context, *Empty) (*GetHairColorsResponse, error)
 	mustEmbedUnimplementedProfileServiceServer()
 }
 
@@ -128,6 +154,12 @@ func (UnimplementedProfileServiceServer) DeleteProfileByID(context.Context, *Get
 }
 func (UnimplementedProfileServiceServer) GetCityIDByName(context.Context, *GetCityIDByNameRequest) (*GetCityIDByNameResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetCityIDByName not implemented")
+}
+func (UnimplementedProfileServiceServer) GetNationalities(context.Context, *Empty) (*GetNationalitiesResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetNationalities not implemented")
+}
+func (UnimplementedProfileServiceServer) GetHairColors(context.Context, *Empty) (*GetHairColorsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetHairColors not implemented")
 }
 func (UnimplementedProfileServiceServer) mustEmbedUnimplementedProfileServiceServer() {}
 func (UnimplementedProfileServiceServer) testEmbeddedByValue()                        {}
@@ -240,6 +272,42 @@ func _ProfileService_GetCityIDByName_Handler(srv interface{}, ctx context.Contex
 	return interceptor(ctx, in, info, handler)
 }
 
+func _ProfileService_GetNationalities_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(Empty)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ProfileServiceServer).GetNationalities(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ProfileService_GetNationalities_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ProfileServiceServer).GetNationalities(ctx, req.(*Empty))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _ProfileService_GetHairColors_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(Empty)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ProfileServiceServer).GetHairColors(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ProfileService_GetHairColors_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ProfileServiceServer).GetHairColors(ctx, req.(*Empty))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // ProfileService_ServiceDesc is the grpc.ServiceDesc for ProfileService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -266,6 +334,14 @@ var ProfileService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetCityIDByName",
 			Handler:    _ProfileService_GetCityIDByName_Handler,
+		},
+		{
+			MethodName: "GetNationalities",
+			Handler:    _ProfileService_GetNationalities_Handler,
+		},
+		{
+			MethodName: "GetHairColors",
+			Handler:    _ProfileService_GetHairColors_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

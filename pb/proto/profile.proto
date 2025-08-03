@@ -67,10 +67,20 @@ message GetCityIDByNameResponse {
   int32 city_id = 1; 
 }
 
+message GetNationalitiesResponse {
+  repeated string nationalities = 1;
+}
+
+message GetHairColorsResponse {
+  repeated string hair_colors = 1;
+}
+
 service ProfileService {
   rpc CreateProfile(CreateProfileRequest) returns (Profile);
   rpc GetProfileByID(GetProfileByIDRequest) returns (Profile);
   rpc GetProfiles(Empty) returns (GetProfilesResponse);
   rpc DeleteProfileByID(GetProfileByIDRequest) returns (Empty);
   rpc GetCityIDByName(GetCityIDByNameRequest) returns (GetCityIDByNameResponse);
+  rpc GetNationalities(Empty) returns (GetNationalitiesResponse);
+  rpc GetHairColors(Empty) returns (GetHairColorsResponse);
 }

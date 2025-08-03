@@ -17,8 +17,8 @@ message CreateProfileRequest {
   int32 height = 4;
   int32 weight = 5;
   string breast_size = 6;
-  string hair_color_id = 7;
-  string nationality_id = 8;
+  int32 hair_color_id = 7;
+  int32 nationality_id = 8;
   int32 city_id = 9;
   repeated int32 district_ids = 10;
   repeated int32 metro_ids = 11;
@@ -35,8 +35,8 @@ message Profile {
   int32 height = 5;
   int32 weight = 6;
   string breast_size = 7;
-  string hair_color_id = 8;
-  string nationality_id = 9;
+  int32 hair_color_id = 8;
+  int32 nationality_id = 9;
   int32 city_id = 10;
   repeated int32 district_ids = 11;
   repeated int32 metro_ids = 12;

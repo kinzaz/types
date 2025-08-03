@@ -11,8 +11,8 @@ type Profile struct {
 	Height        int       `json:"height" db:"height"`
 	Weight        int       `json:"weight" db:"weight"`
 	BreastSize    string    `json:"breast_size" db:"breast_size"`
-	HairColorID   string    `json:"hair_color_id" db:"hair_color_id"`
-	NationalityID string    `json:"nationality_id" db:"nationality_id"`
+	HairColorID   int       `json:"hair_color_id" db:"hair_color_id"`
+	NationalityID int       `json:"nationality_id" db:"nationality_id"`
 	Prices        Prices    `json:"prices" db:"prices"`
 	Phone         string    `json:"phone" db:"phone"`
 	Images        []string  `json:"images" db:"images"`
@@ -34,8 +34,8 @@ type CreateProfile struct {
 	Height        int      `json:"height"`
 	Weight        int      `json:"weight"`
 	BreastSize    string   `json:"breast_size"`
-	HairColorID   string   `json:"hair_color_id"`
-	NationalityID string   `json:"nationality_id"`
+	HairColorID   int      `json:"hair_color_id"`
+	NationalityID int      `json:"nationality_id"`
 	CityID        int      `json:"city_id"`
 	DistrictIDs   []int    `json:"district_ids"`
 	MetroIDs      []int    `json:"metro_ids"`

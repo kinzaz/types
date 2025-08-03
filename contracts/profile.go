@@ -45,11 +45,11 @@ type CreateProfile struct {
 }
 
 type Nationality struct {
-	ID          int    `json:"id"`
-	Nationality string `json:"nationality"`
+	ID          int    `json:"id" db:"id"`
+	Nationality string `json:"nationality" db:"nationality"`
 }
 
 type HairColor struct {
-	ID    int    `json:"id"`
-	Color string `json:"color"`
+	ID    int    `json:"id" db:"id"`
+	Color string `json:"color" db:"color"`
 }

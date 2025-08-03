@@ -67,12 +67,22 @@ message GetCityIDByNameResponse {
   int32 city_id = 1; 
 }
 
+message Nationality {
+  int32 id = 1;
+  string Nationality = 2;
+}
+
 message GetNationalitiesResponse {
-  repeated string nationalities = 1;
+  repeated Nationality nationalities = 1;
+}
+
+message HairColor {
+  int32 id = 1;
+  string color = 2;
 }
 
 message GetHairColorsResponse {
-  repeated string hair_colors = 1;
+  repeated HairColor hair_colors = 1;
 }
 
 service ProfileService {

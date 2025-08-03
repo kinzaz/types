@@ -9,8 +9,6 @@ type ProfileForNormalization struct {
 	BreastSize  string
 	HairColor   string
 	Nationality string
-	EyeColor    string
-	Piercings   bool
 	Prices      map[string]string
 	Phone       string
 	Images      []string

@@ -26,3 +26,20 @@ type Prices struct {
 	TwoHour int `json:"2_hour"`
 	Night   int `json:"night"`
 }
+
+type CreateProfile struct {
+	Name          string   `json:"name" `
+	Description   string   `json:"description"`
+	Age           int      `json:"age"`
+	Height        int      `json:"height"`
+	Weight        int      `json:"weight"`
+	BreastSize    string   `json:"breast_size"`
+	HairColorID   string   `json:"hair_color_id"`
+	NationalityID string   `json:"nationality_id"`
+	CityID        int      `json:"city_id"`
+	DistrictIDs   []int    `json:"district_ids"`
+	MetroIDs      []int    `json:"metro_ids"`
+	Prices        Prices   `json:"prices"`
+	Phone         string   `json:"phone"`
+	Images        []string `json:"images"`
+}

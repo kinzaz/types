@@ -43,3 +43,13 @@ type CreateProfile struct {
 	Phone         string   `json:"phone"`
 	Images        []string `json:"images"`
 }
+
+type Nationality struct {
+	ID          int    `json:"id"`
+	Nationality string `json:"nationality"`
+}
+
+type HairColor struct {
+	ID    int    `json:"id"`
+	Color string `json:"color"`
+}
